@@ -11,7 +11,7 @@
 function foo(myNum) {
   const test = 10;
   const x = function (y) {
-    console.log(y + test);
+    console.log(y + myNum);
   };
   return x;
 }
@@ -35,3 +35,14 @@ function test() {
   console.log(x);
 }
 //======
+
+function test() {
+  const x = 10;
+  return () => {
+    console.log(x);
+  };
+}
+
+const foo = test();
+
+foo();
