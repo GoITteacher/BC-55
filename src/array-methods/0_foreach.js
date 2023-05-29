@@ -5,3 +5,36 @@
  - Нічого не повертає.
 
 */
+
+const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const result = arr.forEach(el => {
+  el = 0;
+});
+
+// ================================
+
+// let PI = 3.1415926;
+// function sum(x, y) {
+//   console.log(x + y * PI);
+// }
+// sum(10, 20);
+// PI = 3.1415926;
+// sum(10, 20);
+// PI = 3.15;
+// sum(10, 20);
+// PI = 3.2;
+// sum(10, 20);
+
+// =====================
+
+// function foo(arr) {
+//   for (let i = 0; i < arr.length; i++) {
+//     arr[i] *= 2;
+//   }
+// }
+
+// const arr1 = [2, 4, 78, 9, 2, 6, 8, 2, 1];
+
+// foo(arr1);
+
+// console.log(arr1);

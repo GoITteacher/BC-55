@@ -25,4 +25,19 @@
 //   },
 // ];
 
-let str = ['Roman', 'Anatoliy', 'Anatoliy', 'Anatoliy', 'Anatoliy'];
+let str = [
+  'Roman',
+  'Anatoliy',
+  'Anatoliy',
+  'Anatoliy',
+  'Max',
+  'Alena',
+  'Mila',
+  'Alina',
+];
+
+// const index = str.findIndex((el, index, array) => {
+//   return el === 'awd';
+// });
+
+// console.log(index);

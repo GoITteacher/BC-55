@@ -1,6 +1,6 @@
 /*
 
- - Сортує і змінює вихідний масив.
+ - Сортує і змінює вхідний масив.
  - Повертає змінений масив, тобто посилання на відсортований вихідний.
  - За замовчуванням сортує за зростанням.
  - Сортування відбувається шляхом приведення значень до рядка і порівняння порядкових номерів у таблиці Unicode.
@@ -89,3 +89,67 @@ let cars = [
     onSale: false,
   },
 ];
+
+/* const arr = [1, 2, 11, 12, 21, 22, 3, 31, 232];
+
+arr.sort((a, b) => {
+  return a - b;
+});
+
+console.log(arr); */
+
+// const arr = ['Anton', 'Max', 'Max', 'Borys', 'Marina'];
+
+// arr.sort((a, b) => {
+//   console.log(a, b);
+//   console.log(a.localeCompare(b));
+//   return a.localeCompare(b);
+// });
+
+// console.log('\n\n\n\n');
+// console.log(arr);
+// =================
+
+const users = [
+  {
+    name: 'Max',
+    age: 22,
+    friends: ['Nazar', 'Alena', 'Mila', 'Nadiya'],
+    langs: ['JS', 'C#'],
+  },
+  {
+    name: 'Roman',
+    age: 15,
+    friends: ['Volodymyr', 'Alena', 'Max', 'Stas'],
+    langs: ['SQL', 'JAVA'],
+  },
+  {
+    name: 'Mila',
+    age: 28,
+    friends: ['Anton', 'Alina', 'Mariya', 'Vira'],
+    langs: ['REACT', 'NODE JS'],
+  },
+  {
+    name: 'Borys',
+    age: 20,
+    friends: ['Nikita', 'Anastasiya'],
+    langs: ['VueJs'],
+  },
+  {
+    name: 'Borys',
+    age: 18,
+    friends: ['Nikita', 'Anastasiya'],
+    langs: ['VueJs'],
+  },
+];
+
+users.sort((b, a) => {
+  if (a.name === b.name) {
+    return b.age - a.age;
+  } else {
+    return a.name.localeCompare(b.name);
+  }
+});
+console.log(users);
+
+// [Object object]

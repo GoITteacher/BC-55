@@ -8,7 +8,12 @@
  - Перебирання масиву припиняється, якщо колбек повертає false.
 */
 
-let array = [-1, -6, -1, -6, -1, -6, -1, -6, 1];
+// let array = [-1, -6, -1, 0, -1, -6, -1, -6, -1];
+// let hashtags = ['hello', 'se fsr', 'drgdrg', 'drgdrg', 'drgdrg', 'drgdrg'];
+// const result1 = hashtags.every((el, index, array) => {
+//   return el.toLowerCase() === el && !el.includes(' ');
+// });
+// console.log(result1);
 
 /*
     SOME
@@ -18,3 +23,11 @@ let array = [-1, -6, -1, -6, -1, -6, -1, -6, 1];
  - Повертає false, якщо жоден елемент масиву не задовольняє умову.
  - Перебирання масиву припиняється, якщо колбек повертає true.
 */
+
+// const arr = [1, 2, 3, 4, 5, 6, 2, 4, -5, 8, 7, -54, 43, 2];
+
+// const result = arr.some((el, index, array) => {
+//   return el < 0;
+// });
+
+// console.log(result);

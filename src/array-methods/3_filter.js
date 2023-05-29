@@ -10,4 +10,13 @@
 
 */
 
-let array = [1, 3, 56, 1, 5, 78, 2, 6];
+// let array = [1, -53, 56, -5, 1, 5, -6, 78, 2, -1, 6];
+
+// const result = array.filter(el => {
+//   return el % 2 === 0;
+// });
+
+// const result = array.filter(el => el >= 0);
+
+// console.log(array);
+// console.log(result);

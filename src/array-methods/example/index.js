@@ -90,12 +90,31 @@ const cars = [
 //     onSale: true,
 //   }
 
-// Пусть функция getModels возвращает массив моделей (поле model) всех автомобилей.
+// const result = cars
+//   .filter(car => car.onSale) // {}
+//   .map(car => {
+//     return car.model;
+//   })
+//   .sort();
+
+// console.table(result);
+
+// Пусть функция getModels возвращает массив моделей
+// (поле model) всех автомобилей.
+
+const res = cars.map(el => el.model);
+console.log(res);
 
 // Пусть функция makeCarsWithDiscount возвращает новый массив объектов с изменным значением свойства price в зависимости от переданной скидки.
 
-// Пусть функция filterByPrice возвращает массив автомобилей цена которых меньше чем значение параметра threshold.
+// Пусть функция filterByPrice возвращает массив автомобилей
+// цена которых меньше чем значение параметра threshold.
 
+function filterByPrice(threshold) {
+  return cars.filter(car => car.price < threshold && car.onSale);
+}
+
+console.table(filterByPrice(30000));
 // Пусть функция getCarsWithDiscount возвращает массив автомобилей свойство onSale которых true.
 
 // Пусть функция getCarsWithType возвращает массив автомобилей тип которых совпадает со значением параметра type.
@@ -107,3 +126,14 @@ const cars = [
 // Пусть функция getTotalAmount возвращает общее количество автомобилей(значение свойств amount).
 
 // Пусть функция getSortedCarsOnSale возвращает массив автомобилей на распродаже (свойство onSale), отсортированных по возрастанию цены.
+
+// registerGuest('Манго', function greet(name) {
+//   console.log(`Ласкаво просимо ${name}.`);
+// });
+
+// console.log(123);
+
+// function foo() {
+//   console.log('Hello');
+//   return 'Hello';
+// }
