@@ -170,8 +170,8 @@ class Wolf extends Animal {
 // const myBird3 = new Bird(20, '123', 15, 5);
 
 // const myFox = new Fox(20, '123', 15, 5);
-const myWolf = new Wolf(20, '123', 15, 5);
+// const myWolf = new Wolf(20, '123', 15, 5);
 
 // console.log(myBird1);
 // console.log(myFox);
-console.log(myWolf);
+// console.log(myWolf);
