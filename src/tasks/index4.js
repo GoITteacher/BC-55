@@ -10,3 +10,4 @@ const obj = {
 
 const name = 123;
 let age = 23;
+const foo = f;
