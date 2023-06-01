@@ -12,24 +12,6 @@
 Добавь метод updatePostCount(value), который в параметре value принимает количество постов которые нужно добавить пользователю.
 */
 
-class User {
-  constructor(user) {
-    const { name: email, age, numberOfPosts, topics } = user;
-    this.email = email;
-    this.age = age;
-    this.numberOfPosts = numberOfPosts;
-    this.topics = topics;
-  }
-
-  getInfo() {
-    return `User ${this.email} is ${this.age} years old and has ${this.numberOfPosts} posts.`;
-  }
-
-  updatePostCount(value) {
-    this.numberOfPosts += value;
-  }
-}
-
 const mango = new User({
   name: 'mango@mail.com',
   age: 24,
