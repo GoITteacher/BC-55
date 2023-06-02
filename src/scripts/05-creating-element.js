@@ -6,6 +6,12 @@ let list = document.querySelector('.usernames');
 document.createElement(tagName);
 */
 
+const myElem = document.createElement('li');
+myElem.classList.add('blue');
+
+const myElem1 = document.createElement('li');
+myElem1.classList.add('blue');
+
 /* 
     Додавання
     - element.append(el1, el2, ...) - додає один або декілька елементів після всіх дітей елемента element.
@@ -14,7 +20,16 @@ document.createElement(tagName);
     - element.before(el1, el2, ...) - додає один або декілька елементів перед елементом element.
 */
 
+// list.append(myElem, myElem1);
+// list.prepend(myElem, myElem1);
+// list.after(myElem, myElem1);
+// list.before(myElem, myElem1);
+
 /* 
 Видалення
 elem.remove();
 */
+
+// myBtn.addEventListener('click', () => {
+//   list.remove();
+// });
