@@ -45,15 +45,56 @@ const refs = {
 
 ////////////////////////////////////////////////////////////////////////////
 
+function cardTemplate({ hex, rgb }) {
+  return `
+<li class="color-item" data-color="${hex}">
+  <button class="color-body" style="background-color: ${hex}"></button>
+  <div class="color-footer">
+    <div>HEX: ${hex}</div>
+    <div>RGB: ${rgb}</div>
+    <div></div>
+  </div>
+</li>
+  `;
+}
+
+function cardsTemplate(array) {
+  return array.map(cardTemplate).join('');
+}
+
+function renderPalette() {
+  const markup = cardsTemplate(colorPalette);
+  refs.itemList.innerHTML = markup;
+}
+
+refs.btnReloadColor.addEventListener('click', () => {
+  createPaletteItems();
+  renderPalette();
+});
+
+refs.itemList.addEventListener('click', e => {
+  if (e.target === e.currentTarget) return;
+  const liElem = e.target.closest('li');
+  const color = liElem.dataset.color;
+
+  document.body.classList.add('show-modal');
+  refs.modalElement.style.backgroundColor = color;
+});
+
+refs.backdropElem.addEventListener('click', e => {
+  if (e.target !== e.currentTarget) return;
+  document.body.classList.remove('show-modal');
+});
+
 /* 
 nodeName
 <li class="color-item">
-    <button class="color-body style="background-color:...;"></button>
-    <div class="color-footer">
-        <div>HEX: ....</div>
-        <div>RGB: ....</div>
-        <div></div>
-    </div>
+  <button class="color-body" style="background-color: ..."></button>
+  <div class="color-footer">
+    <div>HEX: ....</div>
+    <div>RGB: ....</div>
+    <div></div>
+  </div>
 </li>
 
 */
