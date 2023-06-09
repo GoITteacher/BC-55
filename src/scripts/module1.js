@@ -1,5 +1,29 @@
-export const name1 = 10;
-export const name2 = 10;
-export const name3 = 10;
-export const name4 = 10;
-export const name5 = 10;
+// const user = {
+//   name: 'Helo',
+//   age: 20,
+//   phoneNum: '2342',
+// };
+
+export default 'hello';
+
+export const user = {
+  name: 'Helo',
+  age: 20,
+  phoneNum: '2342',
+};
+
+export const user1 = {
+  name: 'Helo',
+  age: 20,
+  phoneNum: '2342',
+};
+
+export const user2 = {
+  name: 'Helo',
+  age: 20,
+  phoneNum: '2342',
+};
+
+export function sayHello() {
+  console.log('hello');
+}
