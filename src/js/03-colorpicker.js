@@ -14,7 +14,6 @@ paletteContainer.addEventListener('click', onPaletteContainerClick);
 function createColorCardsMarkup(colors) {
   // return colors.map(color => colorCardTpl(color)).join('');
   // return colors.map(colorCardTpl).join('');
-
   return colorCardsTpl(colors);
 }
 
