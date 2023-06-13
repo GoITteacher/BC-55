@@ -87,6 +87,6 @@ img {
   border-radius: 3px;
 }
 
-.timer-btn.is-active {
-  background-color: #2196f3;
+.timer-btn[disabled] {
+  border:3px solid red;
 }
