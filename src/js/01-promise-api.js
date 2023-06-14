@@ -6,30 +6,35 @@
  *  - Promise.prototype.then(onResolve, onReject)
  */
 
-// promise.then(onFulfilled, onRejected);
-
-const promise = new Promise((resolve, reject) => {
-  const rand = Math.random();
-  setTimeout(() => {
-    if (rand > 0.5) {
-      resolve(rand);
-    } else {
-      reject('Sorry!');
-    }
-  }, 10);
+const promise1 = new Promise((resolve, reject) => {
+  const random = Math.random(); // 0 .. 1; 0.5
+  if (random >= 0.5) {
+    resolve(random);
+  } else {
+    reject(random);
+  }
 });
 
-// promise.then(onFulfilled).catch(onRejected);
+// promise1.then(
+//   value => {
+//     console.log('Ok', value);
+//   },
+//   value => {
+//     console.log('Error', value);
+//   },
+// );
 
-// function onFulfilled(result) {
-//   console.log('onFulfilled -> onFulfilled');
-//   console.log(`✅ ${result}`);
-// }
+// promise1.catch(onRejected);
 
-// function onRejected(error) {
-//   console.log('onRejected -> onRejected');
-//   console.log(`❌ ${error}`);
-// }
+function onFulfilled(result) {
+  console.log('onFulfilled -> onFulfilled');
+  console.log(`✅ ${result}`);
+}
+
+function onRejected(error) {
+  console.log('onRejected -> onRejected');
+  console.log(`❌ ${error}`);
+}
 
 /*
  * Цепочки промисов (chaining)
@@ -37,28 +42,17 @@ const promise = new Promise((resolve, reject) => {
  * Promise.prototype.finally()
  */
 
-promise
-  .then(value1 => {
-    console.log(value1, '-> promise1');
-    return [value1];
+promise1
+  .then(value => {
+    console.log('promise 1 - ', value);
+    return value;
   })
-  .catch(err => {
-    console.log('Error', err);
-    return Promise.reject('err');
-  })
-  .then(value2 => {
-    if (value2.length !== 0) {
-      console.log();
-    }
-    return 'food';
-  })
-  .then(value3 => {
-    return value3;
-  })
-  .then(value4 => {
-    console.log('value4->', value4);
-  })
-  .catch(() => {
-    console.log('last catch');
-  })
-  .finally(() => {});
+  .then(
+    result => {
+      console.log(result);
+    },
+    () => {},
+  )
+  .catch(result => {
+    console.log(result);
+  });

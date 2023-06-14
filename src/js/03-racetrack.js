@@ -1,27 +1,13 @@
-/* 
-//
-*/
-
-Promise.resolve()
-
-  .then(() => {
-    console.log(1);
-  })
-  .catch(() => {
-    console.log('err');
-  })
-
-  .then(
-    () => {
-      console.log(2);
-      return Promise.resolve(123);
-    },
-    () => {
-      console.log(2);
-      return Promise.resolve(123);
-    },
-  )
-
-  .then(value => {
-    console.log(value);
+const myPromise = delay =>
+  new Promise((res, rej) => {
+    setTimeout(res, delay);
   });
+
+setTimeout(() => console.log('1'), 1000);
+myPromise(1000).then(res => console.log('2'));
+setTimeout(() => console.log('3'), 100);
+myPromise(2000).then(res => console.log('4'));
+setTimeout(() => console.log('5'), 2000);
+myPromise(1000).then(res => console.log('6'));
+setTimeout(() => console.log('7'), 1000);
+myPromise(5000).then(res => console.log('in Promise '));
