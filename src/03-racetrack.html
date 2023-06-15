@@ -1,31 +1,19 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Мастерская: ипподром</title>
+    <title>SimpleLightbox library</title>
+    <!-- <link rel="stylesheet" href="css/common.css" /> -->
+    <!-- <link rel="stylesheet" href="css/01-gallery.css" /> -->
   </head>
   <body>
-    <p><a href="index.html">На главную</a></p>
+    <p><a href="index.html">Go back</a></p>
 
-    <button class="js-start-race">Следующий заезд</button>
-    <hr />
-    <p class="js-winner"></p>
-    <p class="js-progress"></p>
-    <hr />
+    <!-- Add gallery items to this list -->
+    <ul class="gallery"></ul>
 
-    <table class="js-results-table">
-      <thead>
-        <tr>
-          <th>Заезд</th>
-          <th>Победитель</th>
-          <th>Время</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-
-    <script src="js/03-racetrack.js"></script>
+    <script src="./js/01-gallery.js" type="module"></script>
   </body>
 </html>
