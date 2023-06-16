@@ -5,6 +5,8 @@ import quotesTemplate from '../templates/quotes-card';
 import heroesTemplate from '../templates/hero-card';
 import { getHero } from './modules/heroesAPI';
 
+import { getUsersPosts } from './modules/usersAPI.js';
+
 // =======================================================
 refs.form.addEventListener('submit', onSubmitHandler);
 
@@ -32,7 +34,52 @@ function onSearchHero(e) {
     });
 }
 // =======================================================
+
+refs.form2.addEventListener('submit', e => {
+  e.preventDefault();
+
+  const value = e.target.elements.query.value;
+  getUsersPosts(value)
+    .then(result => {
+      renderPosts(result);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  e.target.reset();
+});
+
+function renderPosts(posts) {
+  const markup = posts
+    .map(el => {
+      return `<li class="card">
+    <h3>${el.title}</h3>
+    <p>${el.body}</p>
+    <p>${el.userId}</p>
+  </li>`;
+    })
+    .join('');
+
+  refs.cardContainer2.innerHTML = markup;
+}
+
 // =======================================================
+
+refs.form3.addEventListener('submit', e => {
+  e.preventDefault();
+
+  fetch('https://api.thecatapi.com/v1/images/search?limit=10')
+    .then(res => res.json())
+    .then(arr => {
+      console.log(arr);
+      const markup = arr
+        .map(el => {
+          return `<img src="${el.url}" alt="#">`;
+        })
+        .join('');
+      refs.cardContainer3.innerHTML = markup;
+    });
+});
 // =======================================================
 // =======================================================
 // =======================================================

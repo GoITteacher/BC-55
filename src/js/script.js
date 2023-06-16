@@ -1,23 +1,32 @@
-function getTodos(objParams) {
-  const BASE_URL = 'https://random-user-generator1.p.rapidapi.com';
-  const END_POINT = '/locale/id_ID';
+const btnElem = document.querySelector('.js-btn');
+const listElem = document.querySelector('.js-list');
+btnElem.addEventListener('click', () => {
+  getPosts().then(result => {
+    renderPosts(result);
+  });
+});
 
-  const params = new URLSearchParams(objParams);
+function getPosts() {
+  const BASE_URL = 'https://jsonplaceholder.typicode.com';
+  const END_POINT = '/posts';
+  const PARAMS = '?userId=3';
+  const URL = BASE_URL + END_POINT + PARAMS;
 
-  const options = {
-    headers: {
-      'X-RapidAPI-Key': '9b3ff61931msh1b42d77d34e33dap1c29cajsn3d3169e0e2f4',
-      'X-RapidAPI-Host': 'random-user-generator1.p.rapidapi.com',
-    },
-  };
-
-  return fetch(`${BASE_URL}${END_POINT}?${params}`, options).then(res =>
-    res.json(),
-  );
+  return fetch(URL).then(response => {
+    return response.json();
+  });
 }
 
-getTodos({
-  limit: 1,
-}).then(users => {
-  document.querySelector('#userName').textContent = users[0].name;
-});
+function renderPosts(posts) {
+  const markup = posts
+    .map(el => {
+      return `<li class="card">
+    <h3>${el.title}</h3>
+    <p>${el.body}</p>
+    <p>${el.userId}</p>
+  </li>`;
+    })
+    .join('');
+
+  listElem.insertAdjacentHTML('beforeend', markup);
+}
