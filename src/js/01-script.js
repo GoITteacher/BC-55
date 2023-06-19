@@ -1,61 +1,86 @@
-import { NewsApi } from './modules/newsApi';
-const form = document.querySelector('.js-search-form');
-const btnLoad = document.querySelector('.js-btn-load');
-const articleListElem = document.querySelector('.js-article-list');
+import { NewsAPI } from './modules/newsApi.js';
 
-let newsApi1 = new NewsApi();
+const refs = {
+  formElem: document.querySelector('.js-search-form'),
+  listElem: document.querySelector('.js-article-list'),
+  btnLoadElem: document.querySelector('.js-btn-load'),
+};
+const newsApi = new NewsAPI();
 
-form.addEventListener('submit', e => {
+let observer = new IntersectionObserver(intersectionCallback);
+observer.observe(refs.btnLoadElem);
+
+refs.formElem.addEventListener('submit', e => {
   e.preventDefault();
-  const query = e.target.elements.query.value.trim();
-
-  if (query) {
-    newsApi1.currentPage = 1;
-
-    newsApi1.getNewsByAxios(query).then(data => {
-      clearElement(articleListElem);
-      renderArticles(data.articles);
-      btnLoad.disabled = false;
-
-      if (newsApi1.currentPage >= data.total_pages) {
-        btnLoad.disabled = true;
-      }
-      e.target.reset();
+  const query = e.target.elements.query.value;
+  refs.listElem.innerHTML = '';
+  newsApi.page = 1;
+  newsApi.query = query;
+  newsApi
+    .getArticles()
+    .then(data => {
+      refs.btnLoadElem.disabled = data.page >= data.total_pages;
+      const markup = articlesMarkup(data.articles);
+      renderArticles(markup);
+    })
+    .catch(err => {
+      console.log(err);
     });
-  } else {
-    console.log('Empty query');
-  }
+
+  e.target.reset();
 });
 
-btnLoad.addEventListener('click', e => {
-  newsApi1.currentPage++;
-  newsApi1.getNews().then(data => {
-    renderArticles(data.articles);
+refs.btnLoadElem.addEventListener('click', onLoadMore);
 
-    if (newsApi1.currentPage >= data.total_pages) {
-      btnLoad.disabled = true;
+function articlesMarkup(array) {
+  return array
+    .map(({ media, title, summary, author, published_date, topic }) => {
+      return `
+<li class="news-card card">
+    <img src="${media}" alt="${topic}" />
+    <h3 class="card-title">${title}</h3>
+    <p class="card-desc">${summary}</p>
+    <div class="card-footer">
+        <p>${author}</p> <span>${published_date}</span>
+    </div>
+</li>`;
+    })
+    .join('\n');
+}
+
+function onLoadMore() {
+  console.log('LOAD');
+  newsApi
+    .getArticles()
+    .then(data => {
+      refs.btnLoadElem.disabled = data.page >= data.total_pages;
+      const markup = articlesMarkup(data.articles);
+      renderArticles(markup);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+}
+function renderArticles(markup) {
+  refs.listElem.insertAdjacentHTML('beforeend', markup);
+}
+
+function intersectionCallback(entries) {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      if (entry.intersectionRatio >= 0.75) {
+        onLoadMore();
+      }
     }
   });
-});
-
-function clearElement(element) {
-  while (element.firstChild) {
-    element.removeChild(element.firstChild);
-  }
 }
-
-function renderArticles(articles) {
-  const markup = articles
-    .map((article, index, array) => {
-      return `
-    <li>
-    <h3>${article.title}</h3>
-    <p>${article.summary}</p>
-    <p>${article.author}</p>
-    </li>
-    `;
-    })
-    .join('');
-
-  articleListElem.insertAdjacentHTML('beforeend', markup);
-}
+/* 
+<li class="news-card card">
+    <img src="#" alt="#" />
+    <h3 class="card-title">Title</h3>
+    <p class="card-desc">Desc</p>
+    <div class="card-footer">
+        <p>Author</p>
+    </div>
+</li>
+*/
