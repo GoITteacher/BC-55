@@ -4,7 +4,7 @@ const refs = {
   formElem: document.querySelector('.js-search-form'),
   listElem: document.querySelector('.js-article-list'),
   btnLoadElem: document.querySelector('.js-btn-load'),
-};
+}; /* 
 const newsApi = new NewsAPI();
 
 let observer = new IntersectionObserver(intersectionCallback);
@@ -73,7 +73,8 @@ function intersectionCallback(entries) {
       }
     }
   });
-}
+} */
+
 /* 
 <li class="news-card card">
     <img src="#" alt="#" />
