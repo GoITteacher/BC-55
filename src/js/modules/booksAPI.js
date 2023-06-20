@@ -1,74 +1,54 @@
-import axios from 'axios';
-
-const axiosV2 = axios.create({
-  baseURL: 'http://localhost:4040',
-});
-
-const BASE_URL = 'http://localhost:4040';
-
+const BASE_URL = 'http://localhost:5000';
+const END_POINT = '/books';
+const URL = BASE_URL + END_POINT;
 export class BooksAPI {
-  getAllBooks() {
-    return fetch(`${BASE_URL}/books`).then(response => {
-      return response.json();
-    });
+  static getBooks() {
+    return fetch(URL).then(res => res.json());
   }
 
-  createBook(book) {
+  static createBook(newBook) {
     const options = {
       method: 'POST',
-      body: JSON.stringify(book),
       headers: {
-        'Content-Type': 'application/json; charset=UTF-8',
+        'Content-type': 'application/json',
       },
+      body: JSON.stringify(newBook),
     };
-
-    return fetch(`${BASE_URL}/books`, options);
+    return fetch(URL, options).then(res => res.json());
   }
 
-  deleteBook(id) {
-    axiosV2.delete(`/books/${id}`);
-
-    // fetch(`${BASE_URL}`, {
-    //   method: 'DELETE',
-    // });
-  }
-
-  resetBook({
-    bookId: id,
-    bookDesc: desc,
-    bookTitle: title,
-    bookAuthor: author,
-  }) {
-    const book = {
-      desc,
-      title,
-      author,
-    };
-
-    const options = {
-      method: 'PUT',
-      body: JSON.stringify(book),
-      headers: {
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-    };
-
-    fetch(`${BASE_URL}/books/${id}`, options);
-  }
-
-  updateBook({ id, ...book }) {
+  static updateBook({ id, ...book }) {
     const options = {
       method: 'PATCH',
-      body: JSON.stringify(book),
       headers: {
-        'Content-Type': 'application/json; charset=UTF-8',
+        'Content-type': 'application/json',
       },
+      body: JSON.stringify(book),
     };
+    const url = `${URL}/${id}`;
 
-    fetch(`${BASE_URL}/books/${id}`, options);
+    return fetch(url, options).then(res => res.json());
   }
 
-  createBookByAxios(book) {
-    return axiosV2.post('/books', book);
+  static resetBook({ id, ...book }) {
+    const options = {
+      method: 'PUT',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(book),
+    };
+    const url = `${URL}/${id}`;
+
+    return fetch(url, options).then(res => res.json());
+  }
+
+  static deleteBook(id) {
+    const options = {
+      method: 'delete',
+    };
+    const url = `${URL}/${id}`;
+
+    return fetch(url, options).then(res => res.json());
   }
 }
