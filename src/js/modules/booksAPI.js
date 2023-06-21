@@ -1,7 +1,4 @@
 import axios from 'axios';
-import { faker } from '@faker-js/faker';
-faker.seed(0);
-faker.locale = 'ru';
 const baseURL = 'http://localhost:4040';
 
 const axiosV2 = axios.create({
@@ -14,7 +11,11 @@ export class BooksAPI {
     this._limit = limit;
   }
 
-  getBooks() {}
+  async getBooks() {
+    const res = await fetch('http://localhost:5000/books');
+    if (res.ok) return await res.json();
+    else Promise.reject('Error');
+  }
 
   getLimitBooks() {}
 
@@ -25,12 +26,4 @@ export class BooksAPI {
   updateBook({ id, ...book }) {}
 
   deleteBook(id) {}
-
-  static getRandomBook() {
-    return {
-      author: faker.name.firstName(),
-      desc: faker.lorem.paragraph(),
-      title: faker.word.preposition(),
-    };
-  }
 }

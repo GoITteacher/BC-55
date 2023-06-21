@@ -15,11 +15,28 @@ const refs = {
 };
 
 // refs.btnLoadMore.addEventListener('click', async () => {});
-// refs.createForm.addEventListener('submit', onCreateForm);
-// refs.resetForm.addEventListener('submit', onResetForm);
-// refs.updateForm.addEventListener('submit', onUpdateForm);
-// refs.deleteForm.addEventListener('submit', onDeleteForm);
+refs.createForm.addEventListener('submit', onCreateForm);
+refs.resetForm.addEventListener('submit', onResetForm);
+refs.updateForm.addEventListener('submit', onUpdateForm);
+refs.deleteForm.addEventListener('submit', onDeleteForm);
+
+async function onCreateForm(e) {}
+async function onResetForm(e) {}
+async function onUpdateForm(e) {}
+async function onDeleteForm(e) {}
+
+async function loadBooks() {
+  try {
+    const books = await booksApi.getBooks();
+    renderBooks(books);
+  } catch (err) {
+    console.log(err);
+  }
+}
+loadBooks();
 
 function renderBooks(books) {
-  refs.bookList.innerHTML = cardBooks(books);
+  const markup = cardBooks(books);
+  console.log(markup);
+  refs.bookList.innerHTML = markup;
 }
