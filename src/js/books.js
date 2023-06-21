@@ -2,9 +2,6 @@ import '../css/common.css';
 import '../css/book.css';
 import { BooksAPI } from './modules/booksAPI';
 import cardBooks from '../templates/card-books.hbs';
-function callback() {
-  console.log('CALLBACK');
-}
 
 const booksApi = new BooksAPI(0, 5);
 
@@ -17,7 +14,7 @@ const refs = {
   deleteForm: document.querySelector('.js-delete-form'),
 };
 
-refs.btnLoadMore.addEventListener('click', async () => {});
+// refs.btnLoadMore.addEventListener('click', async () => {});
 // refs.createForm.addEventListener('submit', onCreateForm);
 // refs.resetForm.addEventListener('submit', onResetForm);
 // refs.updateForm.addEventListener('submit', onUpdateForm);

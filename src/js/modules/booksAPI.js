@@ -20,9 +20,9 @@ export class BooksAPI {
 
   createBook(book) {}
 
-  replaceBook(book, id) {}
+  replaceBook({ id, ...book }) {}
 
-  updateBook(book, id) {}
+  updateBook({ id, ...book }) {}
 
   deleteBook(id) {}
 
