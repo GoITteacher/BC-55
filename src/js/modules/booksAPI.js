@@ -1,5 +1,5 @@
 import axios from 'axios';
-const baseURL = 'http://localhost:4040';
+const baseURL = 'http://localhost:5000';
 
 const axiosV2 = axios.create({
   baseURL: `${baseURL}/books`,
@@ -19,11 +19,20 @@ export class BooksAPI {
 
   getLimitBooks() {}
 
-  createBook(book) {}
+  async createBook(book) {
+    const data = await axiosV2.post('', book);
+    return data.data;
+  }
 
-  replaceBook({ id, ...book }) {}
+  async replaceBook({ id, ...book }) {
+    const data = await axiosV2.put(`/${id}`, book);
+    return data.data;
+  }
 
-  updateBook({ id, ...book }) {}
+  async updateBook({ id, ...book }) {
+    const data = await axiosV2.patch(`/${id}`, book);
+    return data.data;
+  }
 
   deleteBook(id) {}
 }
