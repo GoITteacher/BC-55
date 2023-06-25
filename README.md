@@ -7,3 +7,4 @@
 - [CodeChef](https://www.codechef.com/learn)
 - [Зручний фільтр задач](https://acmp.ru/index.asp?main=tasks)
 - [Підготовка до співбесіди](https://www.interviewbit.com/practice/)
+- [Підготовка до співбесіди](https://github.com/pelmeshek91/books-store/tree/dev/src/sass)
